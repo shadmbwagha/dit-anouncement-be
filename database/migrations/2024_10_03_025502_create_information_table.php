@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('announcements', function (Blueprint $table) {
+        Schema::create('information', function (Blueprint $table) {
             $table->id();
-            $table->string('title');  // Title of the announcement
-            $table->text('content');  // Announcement content
+            $table->string('title');  // Title of the information
+            $table->text('content');  // Information content
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade'); // Foreign key referencing categories table
             $table->timestamp('expiration_date')->nullable();  // Optional expiration date
-            $table->boolean('is_active')->default(true); 
+            $table->boolean('is_active')->default(true);  // Flag for active/inactive information
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('announcements');
+        Schema::dropIfExists('information');
     }
 };
